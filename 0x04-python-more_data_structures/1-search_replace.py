@@ -1,5 +1,22 @@
 #!/usr/bin/python3
+
 def search_replace(my_list, search, replace):
-    if not my_list:
-        return my_list
-    return [val if val != search else replace for val in my_list]
+    """
+    search and replace an element in a list
+    Args:
+        my_list - The list to search
+        search - element to replace
+        replace - subtitute for search
+    """
+    if my_list is None:
+        return None
+    return [
+        replace if x == search else x for x in my_list
+    ]
+
+
+if __name__ == '__main__':
+    my_list = [1, 2, 3, 4, 5, 4, 2, 1, 1, 4, 89]
+    new_list = search_replace(my_list, 2, 89)
+    print(my_list)
+    print(new_list)

@@ -1,6 +1,11 @@
 #!/usr/bin/python3
-def simple_delete(a_dictionary, key=""):
-    """deletes a key in a dictionary."""
-    if key in a_dictionary:
-        del a_dictionary[key]
-    return a_dictionary
+
+def simple_delete(a_dict, key=""):
+    """
+    removes a key in a dict
+    """
+    if a_dict is None:
+        return None
+    if key in a_dict:
+        del a_dict[key]
+    return a_dict

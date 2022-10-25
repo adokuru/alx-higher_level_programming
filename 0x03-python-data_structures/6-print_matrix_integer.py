@@ -1,9 +1,21 @@
 #!/usr/bin/python3
+
 def print_matrix_integer(matrix=[[]]):
-    """Function that prints a matrix of integers"""
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            if j != 0:
-                print(" ", end='')
-            print("{:d}".format(matrix[i][j]), end='')
-        print()
+    """
+    Prints a matrix in the format
+    x x x
+    x x x
+    x x x
+    --
+
+    Args:
+        matrix - a matrix of integers default [[]]
+    """
+    for row in matrix:
+        fmt = " ".join(["{:d}" for x in row])
+        print(fmt.format(*row))
+
+
+if __name__ == '__main__':
+    mat = [[a, a+1, a+2] for a in range(1, 16, 3)]
+    print_matrix_integer(mat)

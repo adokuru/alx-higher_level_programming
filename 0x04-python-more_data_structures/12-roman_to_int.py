@@ -1,19 +1,57 @@
 #!/usr/bin/python3
-def roman_to_int(roman_string):
-    """ converts a Roman numeral to an integer."""
-    romans = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
-    if (roman_string is None) or (type(roman_string) is not str):
+
+def _get_value(char):
+    """
+    Returns the roman value of a character
+    None if its not a Roman Character
+    """
+    romans = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 100
+    }
+    char = char.upper()
+    if char in romans:
+        return romans[char]
+    return None
+
+
+def roman_to_int(roman):
+    """
+    Converts a roman numerals to Decimal
+    Args:
+        roman - the string f roman numerals
+    """
+
+    if not isinstance(roman, str) or roman is None:
         return 0
 
-    number = len(roman_string)
-    value_int = romans[roman_string[number-1]]
-    for i in range(number - 1, 0, -1):
-        current_value = romans[roman_string[i]]
-        previous_value = romans[roman_string[i-1]]
+    result, prev, cur = 0, 0, 0
 
-        if previous_value >= current_value:
-            value_int += previous_value
-        else:
-            value_int -= previous_value
+    for c in roman:
+        cur = _get_value(c)
+        if cur is None:
+            raise ValueError("Wrong input")
+        if cur > prev:
+            result -= prev
+            cur -= prev
+        result += cur
+        prev = cur
 
-    return value_int
+    return result
+
+
+if __name__ == '__main__':
+    tests = [
+        'X',
+        'VII',
+        'IX',
+        'LXXVII',
+        'DCCVII'
+    ]
+    for test in tests:
+        print(test, '=', roman_to_int(test))

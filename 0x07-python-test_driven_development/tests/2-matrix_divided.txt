@@ -141,7 +141,6 @@ The parameter ``div`` must be either an int or float. Otherwise, a TypeError
 is raised.
 
 ::
-
     >>> matrix = [
     ...     [1, 2, 3],
     ...     [4, 5, 6]
